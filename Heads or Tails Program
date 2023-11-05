@@ -1,0 +1,11 @@
+#heads or tails program 
+
+import random 
+
+input("Important decision to be made? Let me help. Press Enter to flip The Coin.")
+
+result = random.choice(["HEADS", "TAILS"])
+
+print(f"The Result Is: {result}")
+
+#pretty simple and fun program, enjoy!!
