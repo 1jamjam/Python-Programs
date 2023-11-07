@@ -1,0 +1,15 @@
+#This is part 3 of the analyzing Real Estate series with Python. I automated the calculation of the GRM - Gross Rent Multiplier with some simple Python code.
+#This one was also fun to make, so enjoy!!!
+
+#Gross Rent Multiplier Calculator
+text = "Let us analyze your properties'"
+print(f"{text.title()} GRM! The Lower, The Better!")
+
+total_price = input("Enter the total acquisition cost of your property:   ")
+total_price = int(total_price)
+
+total_annual_rent = input("Enter the total annual rent you earn from your property:   ")
+total_annual_rent = int(total_annual_rent)
+
+gross_rent_multiplier = total_price / total_annual_rent 
+print(f"Your properties GRM is: {gross_rent_multiplier}")
