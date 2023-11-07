@@ -1,0 +1,19 @@
+#INTRO
+#The 1% Rule States that a properties' monthly income ought to be greater than OR equal to 1% of the Total Acquisition Price.
+#This is a simple program intended to help real estate investors determine the income potential of a potential property or asset they're analyzing, without doing tons of boring math.
+#Enjoy!!!
+
+print("Your Properties' Profitability Based On The 1% Rule!")
+
+monthly_rental_income = input("Enter Your Properties' Monthly Income:   ")
+monthly_rental_income = int(monthly_rental_income)
+
+total_acquisition_cost = input("Enter Your Properties' Total Acquisition Cost:    ")
+total_acquisition_cost = int(total_acquisition_cost)
+
+one_percent_rule = monthly_rental_income >= .01 * (total_acquisition_cost)
+
+if monthly_rental_income >= .01 * (total_acquisition_cost):
+    print("This property satisfies The 1% Rule.")
+else: 
+    print("This property does not satisfy The 1% Rule.")
