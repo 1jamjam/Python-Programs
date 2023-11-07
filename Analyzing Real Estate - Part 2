@@ -1,0 +1,16 @@
+#First we did the 1% rule, now we're using NIAF - Net Income After Financing. Another Real Estate Analytics formula that I automated using Python.
+#Enjoy!!!! 
+
+#NIAF (net income after financing: Profit Calculator!!)
+text = "Let us analyze how profitable your property is!"
+message_to_user = f"Hello, {text.title()}"
+print(message_to_user)
+
+net_operating_income = input("Enter Your Monthly Net Operating Income On Your Property:   ")
+net_operating_income = int(net_operating_income)
+
+financing_costs = input("Enter Your Monthly Cost of Financing Your Property. Include any recurring interest or outstanding debts that apply to your property:   ")
+financing_costs = int(financing_costs)
+
+net_income_after_financing = net_operating_income - (financing_costs)
+print(f"Your NIAF Is: {net_income_after_financing}")
