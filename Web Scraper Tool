@@ -1,0 +1,19 @@
+#This is a prototype web scraper that will be used to extract information from company websites about hiring events and job openings.
+#This is intended to assist my staffing agency identify sales opportunities to offer our staffing solutions based on the info found on lead sites. 
+
+import requests
+from bs4 import BeautifulSoup
+
+def scrape_quotes():
+    url = 'http://quotes.toscrape.com/page/1/'
+    response = requests.get(url)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        quotes = soup.find_all('span', class_='text')
+        author = soup.find_all('small', class_='author')
+        for quote, author in zip(quotes, author):
+            print(f' "{quote.text}" - {author.text}')
+    else:
+        print(f"Failed to fetch the page. Status code: {response.status_code}")
+if __name__ == "__main__":
+    scrape_quotes()
