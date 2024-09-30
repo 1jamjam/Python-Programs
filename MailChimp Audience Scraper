@@ -1,0 +1,73 @@
+#For the life of me, I was not able to download a CSV of an audience I needed to access in MailChimp. 
+#I created a web scraper in Python paired with MailChimp's API to solve this problem.
+#Specifics are omitted for data privacy, but the basics should be understood pretty easily.
+#Enjoy!
+
+import requests
+import csv 
+
+#Setting up API Key and Audience ID 
+
+API_KEY = 'OMITTED'
+AUDIENCE_ID = "OMITTED"
+SERVER_PREFIX = "OMITTED"
+
+# Defining the API URL
+
+url =  OMITTED
+
+#Headers for API request 
+
+headers = {
+    "Authorization": f"apikey OMITTED"
+}
+
+# Initialize an empty list to store all members
+all_members = []
+
+# Start with the first page
+params = {
+    "count": 100,  # Max records per page allowed by Mailchimp API (1000 is the real limit, but let's use 100 to test)
+    "offset": 10    
+}
+
+# Paginate through the results
+while True:
+    response = requests.get(url, headers=headers, params=params)
+    
+    if response.status_code != 200:
+        print(f"Error: {response.status_code}")
+        print(response.json())
+        break
+    
+    data = response.json()
+    
+    # Append the current page of members to the list
+    members = data.get('members', [])
+    all_members.extend(members)
+    
+    # Check if we are on the last page by seeing if fewer results are returned than expected
+    if len(members) < params["count"]:
+        break  # No more pages to fetch
+    
+    # Move to the next page by increasing the offset
+    params["offset"] += params["count"]
+
+# Open CSV file for writing
+with open('mailchimp_audience.csv', mode='w', newline='', encoding='utf-8') as file:
+    writer = csv.writer(file)
+    
+    # Write headers
+    writer.writerow(["Email", "First Name", "Last Name", "Status", "Signup Date"])
+    
+    # Write data for each member
+    for member in all_members:
+        writer.writerow([
+            member['email_address'],
+            member['merge_fields'].get('FNAME', ''),
+            member['merge_fields'].get('LNAME', ''),
+            member['status'],
+            member['timestamp_signup']
+        ])
+
+print(f"Downloaded {len(all_members)} members to 'mailchimp_audience.csv'")
