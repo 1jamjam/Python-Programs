@@ -1,0 +1,1 @@
+A mixture of personal and business case Python scripts I've written. To see the business/real life use cases, check out the Real Estate 1% Rule script as well as the Data Scraping script for MailChimp. 
